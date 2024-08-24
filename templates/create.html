@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Task</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Create New Task</h1>
+        <!-- Display tasks in table format -->
+        <h2>All Tasks</h2>
+        <table class="task-table">
+            <thead>
+                <tr>
+                    <th class="id-col">id no:</th>
+                    <th class="thoughts-col">thoughts</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task['id'] }}</td>
+                    <td>{{ task['thoughts'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- Task creation form -->
+        <form action="{{ url_for('create') }}" method="POST">
+            <div class="form-group">
+                <label for="thoughts">Thoughts:</label>
+                <textarea id="thoughts" name="thoughts" required></textarea>
+            </div>
+            <button type="submit">Add My Thought!</button>
+        </form>
+
+    </div>
+</body>
+</html>
